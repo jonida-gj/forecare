@@ -5,6 +5,7 @@ import SolutionSection from "@/components/SolutionSection";
 import HowItWorks from "@/components/HowItWorks";
 import ValueSection from "@/components/ValueSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import ParameterCarousel from "@/components/ParameterCarousel";
 import WhyDifferent from "@/components/WhyDifferent";
 import SecuritySection from "@/components/SecuritySection";
 import DemoRequest from "@/components/DemoRequest";
@@ -19,6 +20,7 @@ const Index = () => {
       <SolutionSection />
       <HowItWorks />
       <ValueSection />
+      <ParameterCarousel />
       <FeaturesSection />
       <WhyDifferent />
       <SecuritySection />
