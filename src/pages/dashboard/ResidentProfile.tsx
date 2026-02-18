@@ -21,6 +21,7 @@ import {
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
+import ClinicalMonitoring from "@/components/dashboard/ClinicalMonitoring";
 
 // --- Mock Data ---
 const mobilityData = [
@@ -310,6 +311,9 @@ const ResidentProfile = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* ===== CLINICAL MONITORING ===== */}
+      <ClinicalMonitoring />
 
       {/* ===== RECENT ALERTS ===== */}
       <Card className="shadow-card border-border">
