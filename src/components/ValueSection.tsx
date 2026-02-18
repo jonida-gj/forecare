@@ -36,13 +36,13 @@ const values = [
 const ValueSection = () => {
   return (
     <section className="section-padding bg-gradient-subtle">
-      <div className="container-narrow">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Value for care providers</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+      <div className="container-narrow px-4 sm:px-6">
+        <div className="max-w-2xl mx-auto text-center mb-10 md:mb-14">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-primary mb-3">Value for care providers</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-foreground">
             Measurable impact on care outcomes
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             ForeCare is designed to deliver tangible operational and clinical value to senior care organizations.
           </p>
         </div>

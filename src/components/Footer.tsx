@@ -22,7 +22,7 @@ const footerLinks = {
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="container-narrow px-6 py-14 md:px-8">
+      <div className="container-narrow px-4 sm:px-6 py-10 md:py-14 md:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2 mb-4">

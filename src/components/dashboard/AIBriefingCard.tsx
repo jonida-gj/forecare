@@ -65,7 +65,7 @@ const AIBriefingCard = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Overnight summary bar */}
-        <div className="flex items-center gap-5 text-xs bg-secondary/50 rounded-lg px-4 py-2.5 flex-wrap">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 text-xs bg-secondary/50 rounded-lg px-3 sm:px-4 py-2.5 flex-wrap">
           <span className="flex items-center gap-1.5 font-medium text-foreground">
             <Clock className="h-3.5 w-3.5 text-primary" /> Overnight Summary
           </span>
@@ -84,7 +84,7 @@ const AIBriefingCard = () => {
         </div>
 
         {/* Briefing categories */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {briefingItems.map((group) => (
             <div key={group.category} className="space-y-2">
               <div className="flex items-center gap-1.5">

@@ -24,14 +24,17 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
   const handleHashLink = (href: string) => {
     const hash = href.replace("/", "");
     if (location.pathname === "/") {
-      // Already on homepage, just scroll
       const el = document.querySelector(hash);
       el?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Navigate to homepage then scroll
       navigate("/" + hash);
     }
   };
@@ -42,36 +45,26 @@ const Navbar = () => {
         scrolled ? "bg-background/90 backdrop-blur-md shadow-card border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="container-wide flex items-center justify-between px-6 py-4 md:px-8">
+      <div className="container-wide flex items-center justify-between px-4 sm:px-6 py-3 md:py-4 md:px-8">
         <Link
           to="/"
           className="flex items-center gap-2"
           onClick={() => {
-            if (location.pathname === "/") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
+            if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <img src={forecareLogo} alt="ForeCare logo" className="h-10 w-10 object-contain" style={{ mixBlendMode: 'multiply' }} />
-          <span className="text-xl font-bold text-foreground">ForeCare</span>
+          <img src={forecareLogo} alt="ForeCare logo" className="h-9 w-9 md:h-10 md:w-10 object-contain" style={{ mixBlendMode: 'multiply' }} />
+          <span className="text-lg md:text-xl font-bold text-foreground">ForeCare</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) =>
             link.isRoute ? (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link key={link.href} to={link.href} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 {link.label}
               </Link>
             ) : (
-              <button
-                key={link.href}
-                onClick={() => handleHashLink(link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <button key={link.href} onClick={() => handleHashLink(link.href)} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                 {link.label}
               </button>
             )
@@ -84,30 +77,35 @@ const Navbar = () => {
           </Button>
           <Button size="sm" asChild>
             <Link to="/login">
-              <LogIn className="h-4 w-4 mr-1" />
-              Enterprise Login
+              <LogIn className="h-4 w-4 mr-1" /> Enterprise Login
             </Link>
           </Button>
         </div>
 
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile: show Request Demo + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <Button size="sm" className="h-9 text-xs" asChild>
+            <Link to="/request-demo">Demo</Link>
+          </Button>
+          <button
+            className="p-2 text-foreground h-11 w-11 flex items-center justify-center"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-background border-b border-border px-6 py-4 animate-fade-in">
-          <nav className="flex flex-col gap-3">
+        <div className="md:hidden bg-background border-b border-border px-4 sm:px-6 py-4 animate-fade-in">
+          <nav className="flex flex-col gap-1">
             {navLinks.map((link) =>
               link.isRoute ? (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-sm font-medium text-muted-foreground py-2"
+                  className="text-sm font-medium text-muted-foreground py-3 px-2 rounded-md hover:bg-muted min-h-[44px] flex items-center"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -115,19 +113,18 @@ const Navbar = () => {
               ) : (
                 <button
                   key={link.href}
-                  onClick={() => {
-                    handleHashLink(link.href);
-                    setMobileOpen(false);
-                  }}
-                  className="text-sm font-medium text-muted-foreground py-2 text-left"
+                  onClick={() => { handleHashLink(link.href); setMobileOpen(false); }}
+                  className="text-sm font-medium text-muted-foreground py-3 px-2 text-left rounded-md hover:bg-muted min-h-[44px] flex items-center"
                 >
                   {link.label}
                 </button>
               )
             )}
-            <Button size="sm" className="mt-2 w-full" asChild>
-              <Link to="/login" onClick={() => setMobileOpen(false)}>Enterprise Login</Link>
-            </Button>
+            <div className="mt-2 space-y-2">
+              <Button size="lg" className="w-full h-11" asChild>
+                <Link to="/login" onClick={() => setMobileOpen(false)}>Enterprise Login</Link>
+              </Button>
+            </div>
           </nav>
         </div>
       )}

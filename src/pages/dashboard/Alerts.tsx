@@ -45,10 +45,10 @@ const Alerts = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold mb-1">Alerts Center</h1>
-        <p className="text-sm text-muted-foreground">12 active alerts · 3 unacknowledged</p>
+        <h1 className="text-xl md:text-2xl font-bold mb-1">Alerts Center</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground">12 active alerts · 3 unacknowledged</p>
       </div>
 
       <div className="space-y-3">
@@ -57,8 +57,8 @@ const Alerts = () => {
           const isExpanded = expandedId === alert.id;
           return (
             <Card key={alert.id} className="shadow-card border-border">
-              <CardContent className="py-4 px-5">
-                <div className="flex items-start justify-between gap-4">
+              <CardContent className="py-3 md:py-4 px-4 md:px-5">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                   <div className="flex items-start gap-3 flex-1">
                     <div className={`p-2 rounded-lg ${style.bg}`}>
                       <alert.icon className={`h-4 w-4 ${style.text}`} />
@@ -86,7 +86,7 @@ const Alerts = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Badge className={`${style.bg} ${style.text} border-0 text-xs`}>{style.label}</Badge>
                     <Button
                       variant="ghost"
@@ -97,7 +97,7 @@ const Alerts = () => {
                       <Brain className="h-3 w-3" />
                       {isExpanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
                     </Button>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 sm:gap-1">
                       <Button variant="ghost" size="icon" className="h-8 w-8" title="Acknowledge">
                         <Check className="h-3.5 w-3.5" />
                       </Button>
