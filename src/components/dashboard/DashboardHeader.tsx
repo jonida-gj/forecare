@@ -24,7 +24,7 @@ const DashboardHeader = () => {
 
   return (
     <header className="h-14 md:h-16 bg-card border-b border-border flex items-center justify-between px-4 md:px-6 sticky top-0 z-30">
-      <div className="flex items-center gap-3 pl-12 lg:pl-0">
+      <div className="flex items-center gap-3 pl-12 md:pl-0">
         <h2 className="text-xs md:text-sm font-semibold text-foreground truncate">Sunrise Senior Living</h2>
         <span className="text-xs text-muted-foreground hidden sm:inline">·</span>
         <span className="text-xs text-muted-foreground hidden sm:inline">Berlin, DE</span>
