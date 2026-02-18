@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import forecareLogo from "@/assets/forecare-logo.png";
 
 const navLinks = [
-  { label: "Product", href: "/#solution" },
+  { label: "Solution", href: "/#solution" },
   { label: "How it works", href: "/#how-it-works" },
   { label: "Features", href: "/#features" },
   { label: "Security", href: "/security", isRoute: true },
