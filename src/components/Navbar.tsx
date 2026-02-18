@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import forecareLogo from "@/assets/forecare-logo.png";
 
 const navLinks = [
   { label: "Solution", href: "#solution" },
@@ -27,12 +28,8 @@ const Navbar = () => {
     >
       <div className="container-wide flex items-center justify-between px-6 py-4 md:px-8">
         <a href="#" className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">FC</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">ForeCare</span>
-          </div>
+          <img src={forecareLogo} alt="ForeCare logo" className="h-9 w-9" />
+          <span className="text-xl font-bold text-foreground">ForeCare</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
