@@ -9,7 +9,7 @@ const steps = [
     image: hwSensor,
     title: "Wearable sensors",
     description:
-      "ForeCare supports integration with third-party monitoring devices, allowing organizations to leverage existing hardware, while providing an optional ring to ensure consistent and continuous monitoring where needed.",
+      "ForeCare supports integration with third-party monitoring devices while providing an optional ring to ensure consistent and continuous monitoring where needed.",
   },
   {
     image: hwApp,
