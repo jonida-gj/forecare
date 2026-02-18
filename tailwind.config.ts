@@ -73,6 +73,14 @@ export default {
           700: "hsl(var(--slate-700))",
           800: "hsl(var(--slate-800))",
         },
+        status: {
+          stable: "hsl(var(--status-stable))",
+          "stable-bg": "hsl(var(--status-stable-bg))",
+          monitor: "hsl(var(--status-monitor))",
+          "monitor-bg": "hsl(var(--status-monitor-bg))",
+          "high-risk": "hsl(var(--status-high-risk))",
+          "high-risk-bg": "hsl(var(--status-high-risk-bg))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
