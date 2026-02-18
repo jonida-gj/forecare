@@ -42,7 +42,15 @@ const Navbar = () => {
       }`}
     >
       <div className="container-wide flex items-center justify-between px-6 py-4 md:px-8">
-        <Link to="/" className="flex items-center gap-2">
+        <Link
+          to="/"
+          className="flex items-center gap-2"
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <img src={forecareLogo} alt="ForeCare logo" className="h-10 w-10 object-contain" style={{ mixBlendMode: 'multiply' }} />
           <span className="text-xl font-bold text-foreground">ForeCare</span>
         </Link>
