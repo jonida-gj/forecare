@@ -103,44 +103,35 @@ const Devices = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold mb-1">Devices</h1>
-        <p className="text-sm text-muted-foreground">Monitor sensor infrastructure and connectivity</p>
+        <h1 className="text-xl md:text-2xl font-bold mb-1">Devices</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground">Monitor sensor infrastructure and connectivity</p>
       </div>
 
       {/* Attention Required */}
       {(offlineCount > 0 || lowBatteryCount > 0 || syncIssueCount > 0) && (
         <Card className="shadow-card border-status-monitor/30 bg-status-monitor-bg/30">
-          <CardContent className="py-4 px-5">
-            <div className="flex items-center gap-2 mb-3">
+          <CardContent className="py-3 md:py-4 px-4 md:px-5">
+            <div className="flex items-center gap-2 mb-2 md:mb-3">
               <AlertTriangle className="h-4 w-4 text-status-monitor" />
               <p className="text-sm font-semibold text-foreground">Attention Required</p>
             </div>
-            <div className="flex gap-6 flex-wrap">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
               {offlineCount > 0 && (
-                <button
-                  onClick={() => setStatusFilter("offline")}
-                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <button onClick={() => setStatusFilter("offline")} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors min-h-[44px] sm:min-h-0">
                   <WifiOff className="h-3.5 w-3.5 text-status-high-risk" />
                   <span><span className="font-semibold text-foreground">{offlineCount}</span> device{offlineCount > 1 ? "s" : ""} offline</span>
                 </button>
               )}
               {lowBatteryCount > 0 && (
-                <button
-                  onClick={() => setBatteryFilter("low")}
-                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <button onClick={() => setBatteryFilter("low")} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors min-h-[44px] sm:min-h-0">
                   <BatteryWarning className="h-3.5 w-3.5 text-status-high-risk" />
-                  <span><span className="font-semibold text-foreground">{lowBatteryCount}</span> low battery alert{lowBatteryCount > 1 ? "s" : ""}</span>
+                  <span><span className="font-semibold text-foreground">{lowBatteryCount}</span> low battery</span>
                 </button>
               )}
               {syncIssueCount > 0 && (
-                <button
-                  onClick={() => setStatusFilter("syncing")}
-                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <button onClick={() => setStatusFilter("syncing")} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors min-h-[44px] sm:min-h-0">
                   <RefreshCw className="h-3.5 w-3.5 text-status-monitor" />
                   <span><span className="font-semibold text-foreground">{syncIssueCount}</span> sync issue{syncIssueCount > 1 ? "s" : ""}</span>
                 </button>
@@ -151,17 +142,17 @@ const Devices = () => {
       )}
 
       {/* System Status */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
         {systemStatus.map((s) => (
           <Card key={s.label} className="shadow-card border-border">
-            <CardContent className="py-5 px-5">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-primary/10">
+            <CardContent className="py-4 px-4 md:py-5 md:px-5">
+              <div className="flex items-center gap-3 mb-2 md:mb-3">
+                <div className="p-1.5 md:p-2 rounded-lg bg-primary/10">
                   <s.icon className="h-4 w-4 text-primary" />
                 </div>
                 <p className="text-xs text-muted-foreground">{s.label}</p>
               </div>
-              <p className="text-2xl font-bold text-foreground">{s.value}</p>
+              <p className="text-xl md:text-2xl font-bold text-foreground">{s.value}</p>
               <p className="text-xs text-muted-foreground mt-1">{s.detail}</p>
             </CardContent>
           </Card>
@@ -170,135 +161,96 @@ const Devices = () => {
 
       {/* Filters */}
       <Card className="shadow-card border-border">
-        <CardContent className="py-4 px-5">
-          <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
-            <div className="relative flex-1 min-w-[200px]">
+        <CardContent className="py-3 md:py-4 px-4 md:px-5">
+          <div className="flex flex-col gap-3">
+            <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search by device, resident, or room..."
-                className="pl-9 h-9 bg-muted/50"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
+              <Input placeholder="Search by device, resident, or room..." className="pl-9 h-10 bg-muted/50" value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
-
-            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as StatusFilter)}>
-              <SelectTrigger className="w-[130px] h-9"><SelectValue placeholder="Status" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All status</SelectItem>
-                <SelectItem value="online">Online</SelectItem>
-                <SelectItem value="offline">Offline</SelectItem>
-                <SelectItem value="syncing">Syncing</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={typeFilter} onValueChange={(v) => setTypeFilter(v as TypeFilter)}>
-              <SelectTrigger className="w-[150px] h-9"><SelectValue placeholder="Device type" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All types</SelectItem>
-                <SelectItem value="ring">Wearable Ring</SelectItem>
-                <SelectItem value="room">Room Sensor</SelectItem>
-                <SelectItem value="gateway">Gateway</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={batteryFilter} onValueChange={(v) => setBatteryFilter(v as BatteryFilter)}>
-              <SelectTrigger className="w-[140px] h-9"><SelectValue placeholder="Battery" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All levels</SelectItem>
-                <SelectItem value="low">Low (&lt;30%)</SelectItem>
-                <SelectItem value="medium">Medium (30-70%)</SelectItem>
-                <SelectItem value="high">High (&gt;70%)</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {(statusFilter !== "all" || typeFilter !== "all" || batteryFilter !== "all" || search) && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-9 text-xs"
-                onClick={() => { setStatusFilter("all"); setTypeFilter("all"); setBatteryFilter("all"); setSearch(""); }}
-              >
-                Clear filters
-              </Button>
-            )}
+            <div className="flex flex-wrap gap-2">
+              <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as StatusFilter)}>
+                <SelectTrigger className="w-[120px] h-9"><SelectValue placeholder="Status" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All status</SelectItem>
+                  <SelectItem value="online">Online</SelectItem>
+                  <SelectItem value="offline">Offline</SelectItem>
+                  <SelectItem value="syncing">Syncing</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={typeFilter} onValueChange={(v) => setTypeFilter(v as TypeFilter)}>
+                <SelectTrigger className="w-[130px] h-9"><SelectValue placeholder="Type" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All types</SelectItem>
+                  <SelectItem value="ring">Ring</SelectItem>
+                  <SelectItem value="room">Room Sensor</SelectItem>
+                  <SelectItem value="gateway">Gateway</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={batteryFilter} onValueChange={(v) => setBatteryFilter(v as BatteryFilter)}>
+                <SelectTrigger className="w-[120px] h-9"><SelectValue placeholder="Battery" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All levels</SelectItem>
+                  <SelectItem value="low">Low</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                </SelectContent>
+              </Select>
+              {(statusFilter !== "all" || typeFilter !== "all" || batteryFilter !== "all" || search) && (
+                <Button variant="ghost" size="sm" className="h-9 text-xs" onClick={() => { setStatusFilter("all"); setTypeFilter("all"); setBatteryFilter("all"); setSearch(""); }}>
+                  Clear
+                </Button>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Results count */}
       <p className="text-xs text-muted-foreground">{filtered.length} device{filtered.length !== 1 ? "s" : ""}</p>
 
-      {/* Device Table */}
+      {/* Device Table with horizontal scroll */}
       <Card className="shadow-card border-border">
-        <CardHeader className="pb-3">
+        <CardHeader className="pb-3 px-4 md:px-6">
           <CardTitle className="text-sm">All Devices</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[640px]">
               <thead>
                 <tr className="border-b border-border bg-muted/30">
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Device ID</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Resident</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Type</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Status</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Battery</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Last Sync</th>
-                  <th className="text-left py-3 px-4 text-xs font-medium text-muted-foreground">Actions</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground sticky left-0 bg-muted/30 z-10">Device</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground">Resident</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground">Status</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground">Battery</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground">Last Sync</th>
+                  <th className="text-left py-3 px-3 md:px-4 text-xs font-medium text-muted-foreground">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map((d) => (
-                  <tr
-                    key={d.id}
-                    className={`border-b border-border last:border-0 hover:bg-muted/50 transition-colors ${
-                      d.status === "Offline" ? "bg-status-high-risk-bg/20" : ""
-                    }`}
-                  >
-                    <td className="py-3 px-4 font-mono text-xs text-muted-foreground">{d.id}</td>
-                    <td className="py-3 px-4">
-                      <span className="font-medium text-foreground">{d.resident}</span>
-                      <span className="text-xs text-muted-foreground ml-1.5">· {d.room}</span>
+                  <tr key={d.id} className={`border-b border-border last:border-0 hover:bg-muted/50 transition-colors ${d.status === "Offline" ? "bg-status-high-risk-bg/20" : ""}`}>
+                    <td className="py-3 px-3 md:px-4 sticky left-0 bg-card z-10">
+                      <span className="font-mono text-xs text-muted-foreground">{d.id}</span>
+                      <p className="text-[10px] text-muted-foreground">{d.type}</p>
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">{d.type}</td>
-                    <td className="py-3 px-4">
-                      {d.status === "Online" && (
-                        <Badge className="bg-status-stable-bg text-status-stable border-0 text-xs">
-                          <Wifi className="h-3 w-3 mr-1" /> Online
-                        </Badge>
-                      )}
-                      {d.status === "Offline" && (
-                        <Badge className="bg-status-high-risk-bg text-status-high-risk border-0 text-xs">
-                          <WifiOff className="h-3 w-3 mr-1" /> Offline
-                        </Badge>
-                      )}
-                      {d.status === "Syncing" && (
-                        <Badge className="bg-status-monitor-bg text-status-monitor border-0 text-xs">
-                          <RefreshCw className="h-3 w-3 mr-1 animate-spin" /> Syncing
-                        </Badge>
-                      )}
+                    <td className="py-3 px-3 md:px-4">
+                      <span className="font-medium text-foreground text-xs">{d.resident}</span>
+                      <span className="text-xs text-muted-foreground ml-1">· {d.room}</span>
                     </td>
-                    <td className="py-3 px-4">
-                      <BatteryIndicator level={d.battery} />
+                    <td className="py-3 px-3 md:px-4">
+                      {d.status === "Online" && <Badge className="bg-status-stable-bg text-status-stable border-0 text-xs"><Wifi className="h-3 w-3 mr-1" /> Online</Badge>}
+                      {d.status === "Offline" && <Badge className="bg-status-high-risk-bg text-status-high-risk border-0 text-xs"><WifiOff className="h-3 w-3 mr-1" /> Offline</Badge>}
+                      {d.status === "Syncing" && <Badge className="bg-status-monitor-bg text-status-monitor border-0 text-xs"><RefreshCw className="h-3 w-3 mr-1 animate-spin" /> Syncing</Badge>}
                     </td>
-                    <td className="py-3 px-4">
-                      <div>
-                        <span className="text-xs text-muted-foreground">{d.lastSync}</span>
-                        {d.issue && (
-                          <p className="text-[10px] text-status-high-risk mt-0.5">{d.issue}</p>
-                        )}
-                      </div>
+                    <td className="py-3 px-3 md:px-4"><BatteryIndicator level={d.battery} /></td>
+                    <td className="py-3 px-3 md:px-4">
+                      <span className="text-xs text-muted-foreground">{d.lastSync}</span>
+                      {d.issue && <p className="text-[10px] text-status-high-risk mt-0.5">{d.issue}</p>}
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3 px-3 md:px-4">
                       <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="sm" className="h-7 text-xs px-2">
-                          <Eye className="h-3.5 w-3.5 mr-1" /> Details
-                        </Button>
+                        <Button variant="ghost" size="sm" className="h-8 text-xs px-2"><Eye className="h-3.5 w-3.5 mr-1" /> Details</Button>
                         {(d.status === "Offline" || d.issue) && (
-                          <Button variant="ghost" size="sm" className="h-7 text-xs px-2 text-status-monitor">
-                            <Wrench className="h-3.5 w-3.5 mr-1" /> Fix
-                          </Button>
+                          <Button variant="ghost" size="sm" className="h-8 text-xs px-2 text-status-monitor hidden sm:flex"><Wrench className="h-3.5 w-3.5 mr-1" /> Fix</Button>
                         )}
                       </div>
                     </td>

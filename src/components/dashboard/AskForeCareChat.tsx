@@ -83,7 +83,7 @@ const AskForeCareChat = ({ contextResident }: Props) => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-elevated hover:shadow-glow flex items-center justify-center transition-all hover:scale-105 active:scale-95"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-elevated hover:shadow-glow flex items-center justify-center transition-all hover:scale-105 active:scale-95"
         title="Ask ForeCare AI"
       >
         <MessageCircle className="h-6 w-6" />
@@ -92,7 +92,7 @@ const AskForeCareChat = ({ contextResident }: Props) => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[520px] rounded-2xl border border-border bg-card shadow-elevated flex flex-col overflow-hidden">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[520px] max-h-[520px] rounded-2xl border border-border bg-card shadow-elevated flex flex-col overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-gradient-to-r from-primary/5 to-transparent">
         <div className="flex items-center gap-2">

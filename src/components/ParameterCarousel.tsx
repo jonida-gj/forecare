@@ -83,16 +83,16 @@ const ParameterCarousel = () => {
 
   return (
     <section id="parameters" className="section-padding bg-background">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-primary mb-3">
             Parameters
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-foreground">
             Continuous monitoring across key health signals
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             ForeCare tracks physiological and behavioral parameters to detect
             early changes.
           </p>
@@ -126,7 +126,7 @@ const ParameterCarousel = () => {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onScroll={handleScroll}
-            className="flex gap-5 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing py-4"
+            className="flex gap-3 sm:gap-5 overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing py-4 touch-pan-x"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {loopedParameters.map((param, index) => {
@@ -134,7 +134,7 @@ const ParameterCarousel = () => {
               return (
                 <div
                   key={`${param.label}-${index}`}
-                  className="flex-shrink-0 flex flex-col items-center justify-center w-[130px] h-[120px] rounded-xl border border-border bg-card shadow-card hover:shadow-elevated hover:scale-105 hover:border-primary/30 transition-all duration-300 group/tile"
+                  className="flex-shrink-0 flex flex-col items-center justify-center w-[100px] h-[100px] sm:w-[130px] sm:h-[120px] rounded-xl border border-border bg-card shadow-card hover:shadow-elevated hover:scale-105 hover:border-primary/30 transition-all duration-300 group/tile"
                   title="Continuous monitoring signal"
                 >
                   <div className="h-10 w-10 rounded-lg bg-secondary flex items-center justify-center mb-3 group-hover/tile:bg-primary/10 transition-colors duration-300">

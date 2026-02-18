@@ -36,15 +36,15 @@ const connectorIcons = [Bluetooth, Wifi, RefreshCw];
 const HowItWorks = () => {
   return (
     <section id="how-it-works" className="section-padding bg-background">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-10 md:mb-16">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-primary mb-3">
             How it works
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-foreground">
             How the ForeCare monitoring platform works
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             ForeCare is a full-stack care intelligence platform — from wearable
             sensors to AI-powered dashboards — designed for senior care
             facilities and clinical environments.
