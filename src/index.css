@@ -57,6 +57,14 @@
     --slate-700: 200 20% 25%;
     --slate-800: 200 25% 15%;
 
+    /* Dashboard status colors */
+    --status-stable: 155 60% 45%;
+    --status-monitor: 45 90% 50%;
+    --status-high-risk: 0 75% 55%;
+    --status-stable-bg: 155 60% 95%;
+    --status-monitor-bg: 45 90% 94%;
+    --status-high-risk-bg: 0 75% 95%;
+
     --gradient-primary: linear-gradient(135deg, hsl(174 52% 40%), hsl(155 40% 45%));
     --gradient-subtle: linear-gradient(180deg, hsl(174 60% 97%), hsl(180 20% 99%));
     --gradient-hero: linear-gradient(160deg, hsl(180 20% 99%) 0%, hsl(174 60% 97%) 50%, hsl(155 45% 96%) 100%);
