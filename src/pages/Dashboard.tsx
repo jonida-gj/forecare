@@ -8,7 +8,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-muted/30">
       <DashboardSidebar />
       {/* Main area — offset by sidebar on desktop only */}
-      <div className="lg:ml-60 transition-all duration-200">
+      <div className="md:ml-60 transition-all duration-200">
         <DashboardHeader />
         <main className="p-4 md:p-6">
           <Outlet />

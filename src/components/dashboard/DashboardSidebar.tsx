@@ -37,7 +37,7 @@ const DashboardSidebar = () => {
         {/* Mobile hamburger button — rendered in header area */}
         <button
           onClick={() => setMobileOpen(true)}
-          className="fixed top-4 left-4 z-50 h-11 w-11 rounded-lg bg-card border border-border shadow-card flex items-center justify-center lg:hidden"
+          className="fixed top-4 left-4 z-50 h-11 w-11 rounded-lg bg-card border border-border shadow-card flex items-center justify-center md:hidden"
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5 text-foreground" />
@@ -46,7 +46,7 @@ const DashboardSidebar = () => {
         {/* Overlay */}
         {mobileOpen && (
           <div
-            className="fixed inset-0 z-50 bg-foreground/20 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-50 bg-foreground/20 backdrop-blur-sm md:hidden"
             onClick={() => setMobileOpen(false)}
           />
         )}
@@ -54,7 +54,7 @@ const DashboardSidebar = () => {
         {/* Slide-in sidebar */}
         <aside
           className={cn(
-            "fixed left-0 top-0 h-screen w-64 bg-card border-r border-border flex flex-col z-50 transition-transform duration-300 lg:hidden",
+            "fixed left-0 top-0 h-screen w-64 bg-card border-r border-border flex flex-col z-50 transition-transform duration-300 md:hidden",
             mobileOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
@@ -102,7 +102,7 @@ const DashboardSidebar = () => {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 h-screen bg-card border-r border-border flex-col z-40 transition-all duration-200 hidden lg:flex",
+        "fixed left-0 top-0 h-screen bg-card border-r border-border flex-col z-40 transition-all duration-200 hidden md:flex",
         collapsed ? "w-16" : "w-60"
       )}
     >
