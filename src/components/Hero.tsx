@@ -19,7 +19,7 @@ const Hero = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground animate-fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Predict deterioration before it becomes a crisis.
+            Identify risk before it becomes critical.
           </h1>
           <p
             className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 animate-fade-in-up"
