@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import {
   FileText, Download, Search, CalendarIcon, Plus, ChevronDown, ChevronUp,
-  AlertTriangle, Shield, BarChart3, ClipboardList,
+  AlertTriangle, Shield, BarChart3, ClipboardList, Brain, Sparkles,
 } from "lucide-react";
 
 type ReportType = "all" | "risk" | "incident" | "compliance" | "analytics";
@@ -31,6 +31,7 @@ interface Report {
   resident: string | null;
   summary: string;
   tags: string[];
+  aiSummary?: string;
 }
 
 const reports: Report[] = [
@@ -39,36 +40,42 @@ const reports: Report[] = [
     automation: "automated", severity: "critical", resident: null,
     summary: "3 residents flagged as high risk this week. Maria Schmidt shows continued decline in mobility metrics. Hans Weber's sleep disruption pattern persists. Ingrid Müller's weight loss trend requires nutritional intervention.",
     tags: ["Weekly", "Facility-wide"],
+    aiSummary: "Key pattern: 3 high-risk residents share a common trajectory — declining mobility correlated with sleep disruption. Maria Schmidt's compound risk (mobility −62%, sleep −43%) suggests accelerating decline. Recommend facility-wide review of nighttime monitoring protocols. Predicted: 2 additional residents may enter high-risk within 7 days based on current trends.",
   },
   {
     name: "Monthly Incident Report", date: "Feb 1, 2026", type: "incident", typeLabel: "Incident",
     automation: "automated", severity: "warning", resident: null,
     summary: "12 incidents recorded in January. 4 near-falls detected by wearable sensors. 2 medication timing deviations flagged. Average response time: 4.2 minutes. All incidents resolved without adverse outcomes.",
     tags: ["Monthly", "Compliance"],
+    aiSummary: "Near-fall incidents concentrated during night shift (75% between 22:00–06:00). Sensor-detected near-falls preceded by 24-48h mobility decline patterns. Recommendation: implement predictive mobility alerts during night shifts to enable proactive intervention.",
   },
   {
     name: "Maria Schmidt — Stability Analysis", date: "Jan 31, 2026", type: "analytics", typeLabel: "Analytics",
     automation: "on-demand", severity: "critical", resident: "Maria Schmidt",
     summary: "Risk score increased from 78 to 92 over 4 weeks. Key drivers: reduced daily step count (−62%), elevated resting heart rate (+18bpm above baseline), sleep duration averaging 3.8h (baseline: 7h).",
     tags: ["Individual", "Trend Analysis"],
+    aiSummary: "Root cause analysis: Decline initiated after medication change on Jan 5. Mobility reduction preceded sleep disruption by 3 days, suggesting mobility as primary driver. Predicted deterioration score: 8.4/10 without intervention. Similar patient profiles showed 73% improvement with combined physiotherapy + sleep hygiene intervention.",
   },
   {
     name: "Alert Response Times", date: "Jan 28, 2026", type: "compliance", typeLabel: "Compliance",
     automation: "automated", severity: "info", resident: null,
     summary: "Average response time: 3.8 minutes (target: <5min). Night shift response slightly elevated at 5.2 minutes. 98% of critical alerts acknowledged within 2 minutes.",
     tags: ["KPI", "Facility-wide"],
+    aiSummary: "Night shift response time (5.2 min) exceeds day shift by 37%. Critical alert acknowledgment rate is excellent at 98%. Trend: response times improving month-over-month (−0.4 min). Staffing optimization during 02:00–05:00 could reduce night shift response times by ~20%.",
   },
   {
     name: "Intervention Effectiveness Q4", date: "Jan 15, 2026", type: "analytics", typeLabel: "Analytics",
     automation: "on-demand", severity: "info", resident: null,
     summary: "Fall prevention interventions reduced incidents by 34%. Sleep hygiene programs improved average sleep by 1.2h across enrolled residents. Nutritional interventions showed 78% compliance rate.",
     tags: ["Quarterly", "Outcomes"],
+    aiSummary: "Strongest ROI from fall prevention program (34% reduction). Sleep hygiene shows promising early results but needs 6+ months for statistical significance. Nutritional compliance higher in Unit A (89%) vs Unit C (62%) — consider replicating Unit A protocols.",
   },
   {
     name: "Hans Weber — Sleep Report", date: "Jan 12, 2026", type: "risk", typeLabel: "Risk Assessment",
     automation: "on-demand", severity: "warning", resident: "Hans Weber",
     summary: "Persistent sleep fragmentation with 4+ wake episodes per night. Total sleep time averaging 3.1h. Recommended psychiatric consultation for sleep evaluation.",
     tags: ["Individual", "Sleep"],
+    aiSummary: "Sleep fragmentation strongly correlated with medication timing (evening dose at 21:00). Actigraphy data shows wake events cluster at 01:00 and 04:00. Recommendation: trial earlier medication time (19:00) and reassess after 5 days.",
   },
 ];
 
@@ -224,9 +231,20 @@ const Reports = () => {
 
                       {/* Expandable summary */}
                       {isExpanded && (
-                        <div className="mt-3 p-3 rounded-lg bg-muted/50 border border-border">
-                          <p className="text-xs font-medium text-foreground mb-1">Summary</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{r.summary}</p>
+                        <div className="mt-3 space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/50 border border-border">
+                            <p className="text-xs font-medium text-foreground mb-1">Summary</p>
+                            <p className="text-xs text-muted-foreground leading-relaxed">{r.summary}</p>
+                          </div>
+                          {r.aiSummary && (
+                            <div className="p-3 rounded-lg bg-primary/[0.03] border border-primary/15">
+                              <div className="flex items-center gap-1.5 mb-1.5">
+                                <Sparkles className="h-3 w-3 text-primary" />
+                                <span className="text-[10px] font-semibold text-primary uppercase tracking-wide">AI Analysis</span>
+                              </div>
+                              <p className="text-xs text-muted-foreground leading-relaxed">{r.aiSummary}</p>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>

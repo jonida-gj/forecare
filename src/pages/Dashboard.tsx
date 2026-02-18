@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import AskForeCareChat from "@/components/dashboard/AskForeCareChat";
 
 const Dashboard = () => {
   return (
@@ -19,6 +20,7 @@ const Dashboard = () => {
           </p>
         </div>
       </div>
+      <AskForeCareChat />
     </div>
   );
 };
