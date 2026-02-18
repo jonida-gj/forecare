@@ -13,6 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import AIBriefingCard from "@/components/dashboard/AIBriefingCard";
 
 const summaryCards = [
   { label: "Total Residents", value: "124", icon: Users, change: "+2 this week" },
@@ -122,6 +123,9 @@ const Overview = () => {
             <span>Monitoring active · All systems operational</span>
           </div>
         </div>
+
+        {/* AI Daily Briefing */}
+        <AIBriefingCard />
 
         {/* Shift Handover Summary */}
         <Card className="shadow-card border-border bg-secondary/30">

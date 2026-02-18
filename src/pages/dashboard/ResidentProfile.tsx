@@ -22,6 +22,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
 import ClinicalMonitoring from "@/components/dashboard/ClinicalMonitoring";
+import AIInsightsPanel from "@/components/dashboard/AIInsightsPanel";
 
 // --- Mock Data ---
 const mobilityData = [
@@ -101,18 +102,8 @@ const ResidentProfile = () => {
         </CardContent>
       </Card>
 
-      {/* ===== AI INSIGHT ===== */}
-      <Card className="border-primary/20 bg-primary/5 shadow-card">
-        <CardContent className="py-4 px-5 flex items-start gap-3">
-          <Brain className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-          <div>
-            <p className="text-sm font-semibold text-foreground mb-1">AI Insight</p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Reduced activity and sleep disruption detected over the past 5 days — possible early decline. Mobility has dropped 60% below baseline. Combined with 1.2 kg weight loss, this pattern suggests increased fall risk and potential health deterioration. Recommend clinical review within 24 hours.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      {/* ===== AI INSIGHTS PANEL ===== */}
+      <AIInsightsPanel />
 
       {/* ===== NEXT ACTIONS ===== */}
       <Card className="shadow-card border-border">
