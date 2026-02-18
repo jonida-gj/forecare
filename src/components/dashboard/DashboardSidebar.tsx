@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
@@ -38,7 +38,7 @@ const DashboardSidebar = () => {
       )}
     >
       {/* Logo */}
-      <div className="flex items-center gap-2 px-4 py-5 border-b border-border">
+      <Link to="/" className="flex items-center gap-2 px-4 py-5 border-b border-border hover:opacity-80 transition-opacity">
         <img
           src={forecareLogo}
           alt="ForeCare"
@@ -48,7 +48,7 @@ const DashboardSidebar = () => {
         {!collapsed && (
           <span className="text-lg font-bold text-foreground">ForeCare</span>
         )}
-      </div>
+      </Link>
 
       {/* Nav */}
       <nav className="flex-1 py-4 overflow-y-auto">
