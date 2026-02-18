@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src={forecareLogo} alt="ForeCare logo" className="h-8 w-8" />
+              <img src={forecareLogo} alt="ForeCare logo" className="h-10 w-10 object-contain" style={{ mixBlendMode: 'multiply' }} />
               <span className="text-lg font-bold text-foreground">ForeCare</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
