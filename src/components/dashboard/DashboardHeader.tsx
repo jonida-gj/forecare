@@ -1,8 +1,18 @@
-import { Search, Bell, User } from "lucide-react";
+import { Search, Bell, User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const DashboardHeader = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 sticky top-0 z-30">
       <div className="flex items-center gap-3">
@@ -32,6 +42,11 @@ const DashboardHeader = () => {
           <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
             <User className="h-4 w-4 text-primary" />
           </div>
+        </Button>
+
+        {/* Logout */}
+        <Button variant="ghost" size="icon" onClick={handleLogout} title="Sign out">
+          <LogOut className="h-[18px] w-[18px] text-muted-foreground" />
         </Button>
       </div>
     </header>

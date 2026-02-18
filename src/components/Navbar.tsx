@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import forecareLogo from "@/assets/forecare-logo.png";
 
 const navLinks = [
-  { label: "Solution", href: "#solution" },
+  { label: "Product", href: "#solution" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Features", href: "#features" },
-  { label: "Security", href: "#security" },
+  { label: "Security", href: "/security", isRoute: true },
 ];
 
 const Navbar = () => {
@@ -33,23 +34,36 @@ const Navbar = () => {
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild>
-            <a href="#contact">Contact</a>
+            <Link to="/request-demo">Request Demo</Link>
           </Button>
           <Button size="sm" asChild>
-            <a href="#demo">Request a demo</a>
+            <Link to="/login">
+              <LogIn className="h-4 w-4 mr-1" />
+              Enterprise Login
+            </Link>
           </Button>
         </div>
 
@@ -65,18 +79,29 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden bg-background border-b border-border px-6 py-4 animate-fade-in">
           <nav className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground py-2"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm font-medium text-muted-foreground py-2"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground py-2"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <Button size="sm" className="mt-2 w-full" asChild>
-              <a href="#demo" onClick={() => setMobileOpen(false)}>Request a demo</a>
+              <Link to="/login" onClick={() => setMobileOpen(false)}>Enterprise Login</Link>
             </Button>
           </nav>
         </div>
