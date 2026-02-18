@@ -9,7 +9,7 @@ const steps = [
     image: hwSensor,
     title: "Wearable sensors",
     description:
-      "Ring, bracelet, and smartwatch continuously measure and record physiological parameters, sent via Bluetooth® to a dedicated mobile app.",
+      "ForeCare integrates with existing wearable and monitoring devices used by care providers, enabling continuous collection of physiological and behavioral data through a unified platform. For organizations without sensor infrastructure, we offer a ring as an optional monitoring solution that seamlessly connects to the system.",
   },
   {
     image: hwApp,
