@@ -126,7 +126,12 @@ const DashboardHeader = () => {
               </div>
             </div>
             <div className="px-4 py-2 border-t border-border">
-              <button className="text-xs text-primary hover:underline w-full text-center">Manage facility settings</button>
+              <button
+                className="text-xs text-primary hover:underline w-full text-center"
+                onClick={() => navigate("/dashboard/settings")}
+              >
+                Manage facility settings
+              </button>
             </div>
           </PopoverContent>
         </Popover>
