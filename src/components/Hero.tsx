@@ -1,7 +1,18 @@
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 import heroBg from "@/assets/hero-bg.jpg";
+import { Play } from "lucide-react";
 
 const Hero = () => {
+  const { demoLogin } = useAuth();
+  const navigate = useNavigate();
+
+  const handleDemoLogin = () => {
+    demoLogin();
+    navigate("/dashboard");
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background */}
@@ -32,10 +43,14 @@ const Hero = () => {
             style={{ animationDelay: "0.3s" }}
           >
             <Button size="lg" asChild>
-              <a href="#demo">Request a demo</a>
+              <Link to="/request-demo">Request a demo</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="#how-it-works">Learn how it works</a>
+              <Link to="/login">Enterprise Login</Link>
+            </Button>
+            <Button variant="ghost" size="lg" onClick={handleDemoLogin} className="gap-2">
+              <Play className="h-4 w-4" />
+              Try live demo
             </Button>
           </div>
         </div>
