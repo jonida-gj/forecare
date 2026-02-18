@@ -75,11 +75,61 @@ const DashboardHeader = () => {
         </Popover>
 
         {/* Profile */}
-        <Button variant="ghost" size="icon">
-          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-            <User className="h-4 w-4 text-primary" />
-          </div>
-        </Button>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <User className="h-4 w-4 text-primary" />
+              </div>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-72 p-0">
+            <div className="px-4 py-4 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <User className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Sunrise Senior Living</p>
+                  <p className="text-xs text-muted-foreground">Berlin, DE</p>
+                </div>
+              </div>
+            </div>
+            <div className="px-4 py-3 space-y-2.5 text-xs">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Facility type</span>
+                <span className="text-foreground font-medium">Assisted Living</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Capacity</span>
+                <span className="text-foreground font-medium">120 beds</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Active residents</span>
+                <span className="text-foreground font-medium">94</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Devices online</span>
+                <span className="text-foreground font-medium">87</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Admin</span>
+                <span className="text-foreground font-medium">Dr. Anna Weber</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Contact</span>
+                <span className="text-foreground font-medium">info@sunrise-living.de</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Plan</span>
+                <span className="text-foreground font-medium">Enterprise</span>
+              </div>
+            </div>
+            <div className="px-4 py-2 border-t border-border">
+              <button className="text-xs text-primary hover:underline w-full text-center">Manage facility settings</button>
+            </div>
+          </PopoverContent>
+        </Popover>
 
         {/* Logout */}
         <Button variant="ghost" size="icon" onClick={handleLogout} title="Sign out">
