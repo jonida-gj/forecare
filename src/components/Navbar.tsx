@@ -7,6 +7,7 @@ import forecareLogo from "@/assets/forecare-logo.png";
 const navLinks = [
   { label: "Solution", href: "/#solution" },
   { label: "How it works", href: "/#how-it-works" },
+  { label: "Parameters", href: "/#parameters" },
   { label: "Features", href: "/#features" },
   { label: "Security", href: "/security", isRoute: true },
 ];

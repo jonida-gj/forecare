@@ -82,7 +82,7 @@ const ParameterCarousel = () => {
   };
 
   return (
-    <section className="section-padding bg-background">
+    <section id="parameters" className="section-padding bg-background">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
