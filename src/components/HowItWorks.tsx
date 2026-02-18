@@ -52,7 +52,7 @@ const HowItWorks = () => {
         </div>
 
         {/* Horizontal flow - Empatica style */}
-        <div className="hidden lg:block relative">
+        <div className="hidden md:block relative">
           {/* The four items in a row */}
           <div className="flex items-start justify-between relative">
             {steps.map((step, index) => (
@@ -134,7 +134,7 @@ const HowItWorks = () => {
         </div>
 
         {/* Mobile vertical layout */}
-        <div className="lg:hidden flex flex-col items-center gap-4">
+        <div className="md:hidden flex flex-col items-center gap-4">
           {steps.map((step, index) => (
             <div key={step.title} className="flex flex-col items-center">
               <div className="h-44 w-44 flex items-center justify-center mb-4">
