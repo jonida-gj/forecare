@@ -8,26 +8,26 @@ const steps = [
   {
     image: hwSensor,
     title: "Wearable sensors",
-    description:
-      "ForeCare supports integration with third-party monitoring devices while providing an optional ring to ensure consistent and continuous monitoring where needed.",
+    subtitle: "Continuous monitoring through flexible device integration",
+    bullets: ["Supports existing wearables", "Optional ForeCare ring", "Reliable data collection"],
   },
   {
     image: hwApp,
     title: "Patient app",
-    description:
-      "The patient app uses the phone's internet connection to automatically transfer all data to the ForeCare Cloud.",
+    subtitle: "Secure data transfer from devices to the platform",
+    bullets: ["Automatic synchronization", "Background connectivity", "Real-time updates"],
   },
   {
     image: hwCloud,
     title: "ForeCare Cloud & AI",
-    description:
-      "Our cloud platform securely stores all data and applies machine learning models to detect risk patterns and anomalies.",
+    subtitle: "Transforms data into predictive insights",
+    bullets: ["Secure cloud storage", "Risk detection algorithms", "Continuous analysis"],
   },
   {
     image: hwDashboard,
     title: "Care dashboard",
-    description:
-      "Care teams access prioritized alerts, risk scores, and guided interventions through the ForeCare portal — in real time.",
+    subtitle: "Actionable insights for care teams",
+    bullets: ["Prioritized alerts", "Risk scores", "Guided interventions"],
   },
 ];
 
@@ -72,12 +72,20 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Text */}
-                <h3 className="text-lg font-bold text-foreground mb-2 text-left w-full px-2">
+                <h3 className="text-lg font-bold text-foreground mb-1 text-left w-full px-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed text-left w-full px-2">
-                  {step.description}
+                <p className="text-sm text-muted-foreground leading-relaxed text-left w-full px-2 mb-2">
+                  {step.subtitle}
                 </p>
+                <ul className="text-sm text-muted-foreground text-left w-full px-2 space-y-1">
+                  {step.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -148,8 +156,16 @@ const HowItWorks = () => {
                 {step.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed text-center max-w-[260px] mb-2">
-                {step.description}
+                {step.subtitle}
               </p>
+              <ul className="text-sm text-muted-foreground text-left max-w-[260px] space-y-1 mb-2">
+                {step.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
               {index < steps.length - 1 && (
                 <div className="flex flex-col items-center my-2">
                   <div className="h-8 border-l-2 border-dashed border-primary/30" />
