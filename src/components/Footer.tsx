@@ -1,3 +1,5 @@
+import forecareLogo from "@/assets/forecare-logo.png";
+
 const footerLinks = {
   platform: [
     { label: "Solution overview", href: "#solution" },
@@ -23,10 +25,8 @@ const Footer = () => {
       <div className="container-narrow px-6 py-14 md:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="flex items-center gap-1.5 mb-4">
-              <div className="h-7 w-7 rounded-lg bg-gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xs">FC</span>
-              </div>
+            <div className="flex items-center gap-2 mb-4">
+              <img src={forecareLogo} alt="ForeCare logo" className="h-8 w-8" />
               <span className="text-lg font-bold text-foreground">ForeCare</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
