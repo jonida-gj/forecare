@@ -1,25 +1,39 @@
 import { useState, useEffect } from "react";
 import { Menu, X, LogIn } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import forecareLogo from "@/assets/forecare-logo.png";
 
 const navLinks = [
-  { label: "Product", href: "#solution" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Features", href: "#features" },
+  { label: "Product", href: "/#solution" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Features", href: "/#features" },
   { label: "Security", href: "/security", isRoute: true },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleHashLink = (href: string) => {
+    const hash = href.replace("/", "");
+    if (location.pathname === "/") {
+      // Already on homepage, just scroll
+      const el = document.querySelector(hash);
+      el?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage then scroll
+      navigate("/" + hash);
+    }
+  };
 
   return (
     <header
@@ -28,10 +42,10 @@ const Navbar = () => {
       }`}
     >
       <div className="container-wide flex items-center justify-between px-6 py-4 md:px-8">
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img src={forecareLogo} alt="ForeCare logo" className="h-10 w-10 object-contain" style={{ mixBlendMode: 'multiply' }} />
           <span className="text-xl font-bold text-foreground">ForeCare</span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
@@ -44,13 +58,13 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ) : (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
+                onClick={() => handleHashLink(link.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
-              </a>
+              </button>
             )
           )}
         </nav>
@@ -90,14 +104,16 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ) : (
-                <a
+                <button
                   key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground py-2"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    handleHashLink(link.href);
+                    setMobileOpen(false);
+                  }}
+                  className="text-sm font-medium text-muted-foreground py-2 text-left"
                 >
                   {link.label}
-                </a>
+                </button>
               )
             )}
             <Button size="sm" className="mt-2 w-full" asChild>
